@@ -354,6 +354,8 @@ def register():
         team_id = None
         is_leader = 0
         team_members = []
+        email_team_name = None
+        email_team_members = []
 
         with sqlite3.connect(DB_PATH) as conn:
             conn.row_factory = sqlite3.Row
@@ -408,11 +410,8 @@ def register():
                     ORDER BY is_team_leader DESC, timestamp ASC
                 ''', (team_id,)).fetchall()
                 team_members = [f"{member['first_name']} {member['last_name']}" for member in members]
-
-                try:
-                    send_invitation_email(email, first_name, team_name, team_members)
-                except Exception as email_error:
-                    raise RuntimeError('Registration failed: could not deliver confirmation email. Please try again.') from email_error
+                email_team_name = team_name
+                email_team_members = team_members
 
             else:
                 conn.execute('''
@@ -420,21 +419,21 @@ def register():
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (first_name, last_name, email, phone, major, games, ctf_mode, None, None, 0, suggestion))
 
-                try:
-                    send_invitation_email(email, first_name, None, [])
-                except Exception as email_error:
-                    raise RuntimeError('Registration failed: could not deliver confirmation email. Please try again.') from email_error
+        email_sent = True
+        try:
+            send_invitation_email(email, first_name, email_team_name, email_team_members)
+        except Exception:
+            email_sent = False
+            app.logger.exception('Registration saved, but confirmation email failed for %s', email)
 
-        return jsonify({'success': True, 'message': 'Registration successful! Check your email for confirmation.'})
+        message = 'تم التسجيل مرحبا بك في الحدث' if email_sent else 'تم التسجيل بنجاح وستصلك رسالة قريبا'
+        return jsonify({'success': True, 'message': message, 'email_sent': email_sent})
     except sqlite3.IntegrityError:
         return jsonify({'success': False, 'error': 'Email already registered.'}), 400
-    except RuntimeError as e:
-        return jsonify({'success': False, 'error': str(e)}), 503
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=False, host='0.0.0.0', port=8080)
-
+    app.run(debug=False, host='0.0.0.0', port=5000)
