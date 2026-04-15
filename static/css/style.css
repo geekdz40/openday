@@ -1,0 +1,231 @@
+/* Custom Styles for Open Day Landing */
+
+:root {
+    --accent: #ef4444;
+    --accent-strong: #dc2626;
+    --accent-soft: #f87171;
+    --bg-dark: #0b1220;
+    --bg-mid: #121826;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-border: rgba(248, 113, 113, 0.28);
+    --text-soft: #d1d5db;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background:
+        radial-gradient(circle at top, rgba(239, 68, 68, 0.14) 0%, transparent 36%),
+        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 22%),
+        radial-gradient(circle at bottom, #1a2235 0%, var(--bg-mid) 42%, var(--bg-dark) 100%);
+    overflow-x: hidden;
+    color: white;
+}
+
+.glass {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.06));
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    border-radius: 1.5rem;
+}
+
+.game-card:hover {
+    transform: translateY(-12px) scale(1.02);
+}
+
+.animate-fade-in {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Navbar Styles */
+nav {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+nav a, nav span {
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* Form Styles */
+input, textarea, select {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(209, 213, 219, 0.7);
+}
+
+input:focus, textarea:focus, select:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(239, 68, 68, 0.22);
+}
+
+/* CTF Sold Out */
+#sold-out-badge {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Hero Canvas Overlay */
+#hero-canvas {
+    z-index: 1;
+}
+
+#register-form label {
+    color: var(--text-soft);
+}
+
+#register-form > div::before {
+    border-radius: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .text-7xl { font-size: 3rem !important; }
+    nav ul { gap: 0.5rem 1rem; }
+    .glass {
+        border-radius: 1.25rem;
+    }
+    .md\\:grid-cols-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+    #hero {
+        min-height: 100svh;
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+    }
+
+    #hero .glass {
+        padding: 1.5rem;
+    }
+
+    section {
+        scroll-margin-top: 7rem;
+    }
+
+    .game-card,
+    #register-form > div,
+    #ctf-subform {
+        border-radius: 1.25rem;
+    }
+
+    button[type="submit"],
+    #register a {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-5xl { font-size: 2rem !important; }
+    .text-4xl { font-size: 1.875rem !important; }
+    .text-3xl { font-size: 1.5rem !important; }
+    nav {
+        top: 0.5rem;
+    }
+}
+
+/* Particle Network Colors */
+.particle-node {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+}
+
+.line-connected {
+    stroke: rgba(248, 113, 113, 0.3);
+    stroke-width: 1;
+}
+
+/* Smooth Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--accent), var(--accent-strong));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* Glassmorphism for Forms */
+form > div {
+    position: relative;
+}
+
+form > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+form > div:hover::before {
+    opacity: 1;
+}
+
+/* Button Glow */
+button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+button[type="submit"]:hover::before {
+    left: 100%;
+}
+
+@media (hover: none) {
+    .game-card:hover,
+    button[type="submit"]:hover,
+    a:hover {
+        transform: none;
+    }
+}

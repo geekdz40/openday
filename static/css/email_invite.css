@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f5f7;
+    color: #1f2937;
+}
+
+.mail-wrapper {
+    width: 100%;
+    padding: 24px 0;
+    background: linear-gradient(180deg, #f9fafb 0%, #eef2f7 100%);
+}
+
+.mail-card {
+    max-width: 620px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.mail-header {
+    background: linear-gradient(135deg, #dc2626, #f97316);
+    color: #ffffff;
+    padding: 28px 24px;
+}
+
+.mail-header h1 {
+    margin: 0 0 8px;
+    font-size: 26px;
+}
+
+.mail-header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.mail-content {
+    padding: 24px;
+    line-height: 1.7;
+}
+
+.team-box {
+    margin-top: 18px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-left: 5px solid #dc2626;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.team-box h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #b91c1c;
+}
+
+.team-name {
+    margin: 0 0 10px;
+    font-weight: 700;
+}
+
+.team-box ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.team-box li {
+    margin-bottom: 6px;
+}
+
+.note {
+    margin-top: 18px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #fff7ed;
+    color: #9a3412;
+    border: 1px solid #fed7aa;
+}
+
+.mail-footer {
+    padding: 18px 24px;
+    background: #111827;
+    color: #e5e7eb;
+    text-align: center;
+    font-size: 14px;
+}
+
+.mail-footer p {
+    margin: 4px 0;
+}

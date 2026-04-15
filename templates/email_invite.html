@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Day Invitation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            background-color: #f3f4f6;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #1f2937;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        .mail-wrapper {
+            width: 100%;
+            padding: 24px 12px;
+            background: #f3f4f6;
+        }
+
+        .mail-card {
+            max-width: 620px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .mail-header {
+            padding: 24px;
+            background: linear-gradient(135deg, #dc2626, #f97316);
+            color: #ffffff;
+        }
+
+        .mail-header h1 {
+            margin: 0 0 8px;
+            font-size: 26px;
+            line-height: 1.3;
+        }
+
+        .mail-header p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .mail-content {
+            padding: 24px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .mail-content p {
+            margin: 0 0 14px;
+        }
+
+        .team-box {
+            margin: 18px 0;
+            padding: 16px;
+            border: 1px solid #e5e7eb;
+            border-left: 5px solid #dc2626;
+            border-radius: 10px;
+            background: #f9fafb;
+        }
+
+        .team-box h2 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #b91c1c;
+        }
+
+        .team-name {
+            margin: 0 0 10px;
+            font-weight: bold;
+        }
+
+        .team-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .team-box li {
+            margin-bottom: 6px;
+        }
+
+        .note {
+            margin-top: 14px !important;
+            padding: 10px 12px;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            background: #fff7ed;
+            color: #9a3412;
+        }
+
+        .mail-footer {
+            padding: 18px 24px;
+            background: #111827;
+            color: #e5e7eb;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .mail-footer p {
+            margin: 4px 0;
+        }
+
+        @media only screen and (max-width: 640px) {
+            .mail-wrapper {
+                padding: 12px 8px;
+            }
+
+            .mail-header,
+            .mail-content,
+            .mail-footer {
+                padding: 16px;
+            }
+
+            .mail-header h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mail-wrapper">
+        <div class="mail-card">
+            <div class="mail-header">
+                <h1>Open Day Invitation</h1>
+                <p>You are invited on <strong>{{ event_date }}</strong></p>
+            </div>
+
+            <div class="mail-content">
+                <p>Hello {{ first_name }},</p>
+                <p>
+                    Thank you for registering for Open Day. We are happy to confirm your invitation
+                    for <strong>{{ event_date }}</strong>.
+                </p>
+
+                {% if team_name or team_members %}
+                <div class="team-box">
+                    <h2>Your Team Details</h2>
+                    {% if team_name %}
+                    <p class="team-name">Team: {{ team_name }}</p>
+                    {% endif %}
+
+                    {% if team_members %}
+                    <ul>
+                        {% for member in team_members %}
+                        <li>{{ member }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <p class="note">Please arrive 15 minutes early.</p>
+            </div>
+
+            <div class="mail-footer">
+                <p>GeekDZ x Electric Quill Club</p>
+                <p>See you there!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
