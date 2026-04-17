@@ -259,8 +259,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             formData.set('ctf_mode', 'team');
             formData.set('ctf_role', ctfRole.value);
-            
-            const teamName = (formData.get('team_name') || '').toString().trim();
+
+            // Both leader input and member select share the same name, so resolve explicitly by role.
+            const rawTeamName = ctfRole.value === 'leader' ? teamNameInput.value : teamSelect.value;
+            const teamName = (rawTeamName || '').toString().trim();
+            formData.set('team_name', teamName);
+
             if (!teamName) {
                 showMessage(ctfRole.value === 'leader' ? 'Please enter a team name.' : 'Please select a team.', 'error');
                 return;
