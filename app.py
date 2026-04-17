@@ -349,7 +349,10 @@ def register():
         games = ','.join(games_list)
         ctf_mode = data.get('ctf_mode')
         ctf_role = data.get('ctf_role')  # 'leader' or 'member'
-        team_name = data.get('team_name', '').strip() if ctf_mode == 'team' else None
+        team_name = None
+        if ctf_mode == 'team':
+            team_name_values = [value.strip() for value in data.getlist('team_name') if value and value.strip()]
+            team_name = team_name_values[0] if team_name_values else None
         suggestion = data.get('suggestion', '').strip()
         team_id = None
         is_leader = 0
